@@ -17,7 +17,7 @@ jobs:
         with:
           go-version: '1.9.3'
       - uses: actions/checkout@master
-      - run: go get 8s.io/client-go/plugin/pkg/client/auth/azure
+      - run: go get k8s.io/client-go/plugin/pkg/client/auth/azure
       - run: go get k8s.io/client-go/plugin/pkg/client/auth/gcp
       - run: go get k8s.io/client-go/plugin/pkg/client/auth/oidc
       - run: make
