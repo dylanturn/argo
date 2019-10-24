@@ -84,13 +84,16 @@ RUN make $MAKE_TARGET
 ####################################################################################################
 FROM argoexec-base as argoexec
 COPY --from=argo-build /go/src/github.com/argoproj/argo/dist/argoexec /usr/local/bin/
-
+RUN useradd -r -u 1000 argouser
+USER argouser
 
 ####################################################################################################
 # workflow-controller
 ####################################################################################################
 FROM scratch as workflow-controller
 COPY --from=argo-build /go/src/github.com/argoproj/argo/dist/workflow-controller /bin/
+RUN useradd -r -u 1000 argouser
+USER argouser
 ENTRYPOINT [ "workflow-controller" ]
 
 
@@ -99,4 +102,6 @@ ENTRYPOINT [ "workflow-controller" ]
 ####################################################################################################
 FROM scratch as argocli
 COPY --from=argo-build /go/src/github.com/argoproj/argo/dist/argo-linux-amd64 /bin/argo
+RUN useradd -r -u 1000 argouser
+USER argouser
 ENTRYPOINT [ "argo" ]
