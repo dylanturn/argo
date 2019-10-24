@@ -17,4 +17,7 @@ jobs:
         with:
           go-version: '1.9.3'
       - uses: actions/checkout@master
+      - run: docker login -u dylanturn -p ${{ secrets.dockerhub_password }}
       - run: make executor-image
+      - run: docker tag argoexec:latest dylanturn/argoexec:latest
+      - run: docker push dylanturn/argoexec:latest
