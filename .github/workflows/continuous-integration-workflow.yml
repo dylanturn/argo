@@ -13,6 +13,8 @@ jobs:
     # This job runs on Linux
     runs-on: ubuntu-latest
     steps:
+      - run: ls -l
+      - run: pwd
       # This step prints an output (time) from the previous step's action.
       - name: Echo the greeting's time
         run: make
