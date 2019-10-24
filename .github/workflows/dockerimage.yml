@@ -14,7 +14,8 @@ jobs:
     - uses: actions/setup-go@v1
       with:
         go-version: '1.9.3'
-          
+    - run: go get github.com/argoproj
+    - run: go get k8s.io/client-go         
     - name: Build the executor binaries
       run: make executor
       
